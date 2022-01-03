@@ -1,2 +1,2 @@
-# bash_gromacs
-Bash code for PVT_density
+# csh_gromacs
+csh shell scripts for GROMCS runs and analysis
