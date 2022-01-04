@@ -1,6 +1,10 @@
-# csh_gromacs
+# MultiGRO
 Bash shell scripts for GROMACS to run multiple simulations and their analysis at once.
 
+<p align="center">
+<img src="MultiGRO-logo.png"  alt="MultiGRO" width="40%">
+</p>
+<p align="center">
 
 MultiGRO consists of two seperated components;
 
