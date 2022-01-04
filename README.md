@@ -2,7 +2,7 @@
 Bash shell scripts for GROMACS to run multiple simulations and their analysis at once.
 
 <p align="center">
-<img src="MultiGRO-logo.png"  alt="MultiGRO" width="40%">
+<img src="MultiGRO-logo.png"  alt="MultiGRO" width="70%">
 </p>
 <p align="center">
 
@@ -17,4 +17,4 @@ MultiGRO consists of two seperated components;
 
 ## Usage
 ### PVT Curves
-Pressure-volume-temperature (PVT) curves are used to determine glass transition temperature (_Tg_) of materials.
+Pressure-volume-temperature (PVT) curves are used to determine glass transition temperature (_T_<sub>g</sub>)) of materials.
