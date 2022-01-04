@@ -1,7 +1,6 @@
 #!/bin/bash
 # Running GROMACS with input files to produce PVT curve for Tg Values
-# Hüsamettin Deniz Özeren
-
+# Hüsamettin Deniz Özeren (https://github.com/hozeren)
 # set verbose level to info
 __VERBOSE=10
 
