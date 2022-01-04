@@ -15,6 +15,30 @@ MultiGRO consists of two seperated components;
 
 ## Download
 
+## Dependencies
+GROMACS 2021 multicore version needs to be installed. It needs to be modified for older versions since `-r` argument has been added for `grompp` module in 2021 version.
+
+  ```bash
+   # Add gromacs 'gmx_mpi' path:
+   export PATH='*path_to_gromacs*/bin/':$PATH
+  ```
 ## Usage
 ### PVT Curves
-Pressure-volume-temperature (PVT) curves are used to determine glass transition temperature (_T_<sub>g</sub>)) of materials.
+Pressure-volume-temperature (PVT) curves are used to determine glass transition temperature (_T_<sub>g</sub>)) of materials. In order to run for PVT curves, `run_tg.sh` is located at `pvt_curves/` directory. 
+
+  Structure:\
+  ```bash
+  ./run_tg.sh -n number_cores -f user.mdp -c initial.gro -i starting_temp -m ending_temp
+  ```
+  `-n`: number of cores (integer)\
+  `-f`: GROMACS .mdp inputfile\
+  `-c`: initial .gro structure file\
+  `-i`: Starting temperature of PVT (integer, kelvin)\
+  `-m`: Ending Temperature of PVT (integer, kelvin)\
+  As an example, if simulation would be run from 700K to 150K with user.mdp and initial.gro using 12 cores:\
+  ```bash
+  chmod a+x run_tg.sh
+  ./run_tg.sh -n number_cores -f user.mdp -c initial.gro -i starting_temp -m ending_temp
+  ```
+  
+  
