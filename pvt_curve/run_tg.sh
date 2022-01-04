@@ -4,14 +4,36 @@
 # set verbose level to info
 __VERBOSE=10
 
-init=21               #initial .gro
-np=12                 #number of cores to use with mpirun
-folder=`pwd`          #directory where .gro, .mdp, etc.
-input=pvt             #name of the input file .mdp
+#init=.gro               #initial .gro
+#np=12                   #number of cores to use with mpirun
+folder=`pwd`             #directory where .gro, .mdp, etc.
+#input=.mdp              #name of the input file .mdp
 
-int=700               #first temperature
-intmin=150            #last temperature
+#int=700                 #first temperature
+#intmin=150              #last temperature
 
+#Input parameters
+while getopts n:f:c:i:m: flag
+do
+    case "${flag}" in
+        n) np=${OPTARG};;
+        f) input=${OPTARG%".mdp"};;
+        c) init=${OPTARG%".gro"};;
+        i) int=${OPTARG};;
+        m) intmin=${OPTARG};;
+    esac
+done
+echo "Input parameters are shown below:"
+echo "Cores: $np cores";
+echo ".MDP: $input.mdp";
+echo ".GRO: $init.gro";
+echo "Starting Temperature: $int K";
+echo "Final Temperature: $intmin K";
+sleep 2
+echo "Simulations are starting... Sit tight."
+sleep 3
+
+#Simulation Loop
 while [ $int -gt $intmin ]
 do
     pint=$(( int+25 ))
