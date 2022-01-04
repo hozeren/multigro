@@ -38,7 +38,7 @@ Pressure-volume-temperature (PVT) curves are used to determine glass transition 
   As an example, if simulation would be run from 700K to 150K with user.mdp and initial.gro using 12 cores:\
   ```bash
   chmod a+x run_tg.sh
-  ./run_tg.sh -n number_cores -f user.mdp -c initial.gro -i starting_temp -m ending_temp
+  ./run_tg.sh -n 12 -f user.mdp -c initial.gro -i 700 -m 150
   ```
   
   
