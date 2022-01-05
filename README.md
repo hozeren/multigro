@@ -23,6 +23,16 @@ MultiGRO consists of two seperated components;
    export PATH='*path_to_gromacs*/bin/':$PATH
   ```
 ## Usage
+### 21 Step Equilibration
+21 step equilibration is a well known method that is used for equilibration at the initial state of amorphous. `21step.sh` is located at `21step/` directory and starts a loop run which uses `21step/inputs/*.mdp` files as inputs.
+ * Run structure:
+  ```bash
+  ./21step.sh -n number_cores -c initial.gro
+  ```
+  `-n`: number of cores (integer)\
+  `-c`: initial .gro structure file\
+    * Script needs topology (.top) and index file (.ndx) in the same folder.
+
 ### PVT Curves
 Pressure-volume-temperature (PVT) curves are used to determine glass transition temperature (_T_<sub>g</sub>)) of materials. `run_tg.sh` is located at `pvt_curves/` directory and starts a loop run from the specified starting temperature to specified ending temperature with an inverval of 25 K.  
 
