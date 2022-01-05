@@ -34,7 +34,7 @@ MultiGRO consists of two seperated components;
     * Script needs topology (.top) and index file (.ndx) in the same folder.
 
 ### PVT Curves
-Pressure-volume-temperature (PVT) curves are used to determine glass transition temperature (_T_<sub>g</sub>)) of materials. `run_tg.sh` is located at `pvt_curves/` directory and starts a loop run from the specified starting temperature to specified ending temperature with an inverval of 25 K.  
+Pressure-volume-temperature (PVT) curves are used to determine glass transition temperature (_T_<sub>g</sub>) of materials. `run_tg.sh` is located at `pvt_curves/` directory and starts a loop run from the specified starting temperature to specified ending temperature with an inverval of 25 K.  
 
  * Run structure:
   ```bash
