@@ -35,6 +35,7 @@ Pressure-volume-temperature (PVT) curves are used to determine glass transition 
   `-c`: initial .gro structure file\
   `-i`: Starting temperature of PVT (integer, kelvin)\
   `-m`: Ending Temperature of PVT (integer, kelvin)\
+    * Script needs topology (.top) and index file (.ndx) in the same folder.
  * As an example, if simulation would be run from 700K to 150K with user.mdp and initial.gro using 12 cores:
   ```bash
   chmod a+x run_tg.sh
