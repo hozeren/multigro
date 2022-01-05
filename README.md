@@ -24,7 +24,7 @@ GROMACS 2021 multicore version needs to be installed. It needs to be modified fo
   ```
 ## Usage
 ### PVT Curves
-Pressure-volume-temperature (PVT) curves are used to determine glass transition temperature (_T_<sub>g</sub>)) of materials. In order to run for PVT curves, `run_tg.sh` is located at `pvt_curves/` directory. 
+Pressure-volume-temperature (PVT) curves are used to determine glass transition temperature (_T_<sub>g</sub>)) of materials. `run_tg.sh` is located at `pvt_curves/` directory and starts a loop run from the specified starting temperature to specified ending temperature with an inverval of 25 K.  
 
   Structure:\
   ```bash
