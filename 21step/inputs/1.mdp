@@ -2,7 +2,7 @@ title       = Protein-ligand complex MD simulation
 
 ; Run parameters
 integrator  = md        ; leap-frog integrator
-nsteps      = 500000   ; 0.5 ns
+nsteps      = 500000    ; 0.5 ns
 dt          = 0.001     ; 1 fs
 ; Output control
 nstxout             = 0         ; suppress .trr output 
