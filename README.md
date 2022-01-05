@@ -16,7 +16,7 @@ MultiGRO consists of two seperated components;
 ## Download
 
 ## Dependencies
-GROMACS 2021 multicore version needs to be installed. It needs to be modified for older versions since `-r` argument has been added for `grompp` module in 2021 version.
+* GROMACS 2021 with MPI is needed to be installed. The scripts needs to be modified for older versions since `-r` argument has been added for `grompp` module in 2021 version.
 
   ```bash
    # Add gromacs 'gmx_mpi' path:
