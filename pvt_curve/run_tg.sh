@@ -29,7 +29,7 @@ echo ".GRO: $init.gro";
 echo "Starting Temperature: $int K";
 echo "Final Temperature: $intmin K";
 sleep 2
-echo "Simulations are starting... Sit tight."
+echo "PVT simulations are starting... Sit tight."
 sleep 3
 
 #Simulation Loop
@@ -40,6 +40,7 @@ do
     cd $folder
     mkdir $int
     cp topol.top $int/
+    cp index.ndx $int/
 
      
     if  [ "$int" -eq 700 ] ; then
@@ -60,7 +61,7 @@ do
         sed -i '/^ref_t.*/d' $int.mdp
         sed -i "/^tau_t.*/a ref_t\t\t\= $int" $int.mdp 
 
-        gmx_mpi grompp -f npt$int.mdp -o $int.tpr -c $pint.gro -r $init.gro -p topol.top -n index.ndx
+        gmx_mpi grompp -f npt$int.mdp -o $int.tpr -c $pint.gro -r $pint.gro -p topol.top -n index.ndx
         mpirun -np $np gmx_mpi mdrun -v -deffnm $int
         int=$(( int-25 ))
     fi
