@@ -26,7 +26,7 @@ MultiGRO consists of two seperated components;
 ### PVT Curves
 Pressure-volume-temperature (PVT) curves are used to determine glass transition temperature (_T_<sub>g</sub>)) of materials. `run_tg.sh` is located at `pvt_curves/` directory and starts a loop run from the specified starting temperature to specified ending temperature with an inverval of 25 K.  
 
-  Structure:\
+ * Run structure:
   ```bash
   ./run_tg.sh -n number_cores -f user.mdp -c initial.gro -i starting_temp -m ending_temp
   ```
@@ -35,10 +35,17 @@ Pressure-volume-temperature (PVT) curves are used to determine glass transition 
   `-c`: initial .gro structure file\
   `-i`: Starting temperature of PVT (integer, kelvin)\
   `-m`: Ending Temperature of PVT (integer, kelvin)\
-  As an example, if simulation would be run from 700K to 150K with user.mdp and initial.gro using 12 cores:\
+ * As an example, if simulation would be run from 700K to 150K with user.mdp and initial.gro using 12 cores:
   ```bash
   chmod a+x run_tg.sh
   ./run_tg.sh -n 12 -f user.mdp -c initial.gro -i 700 -m 150
+  ```
+ * Densities can be extracted using `denity.sh`, which is located at `pvt_curves/analysis/`:
+  ```bash
+  chmod a+x density.sh
+  ./density.sh i starting_temp -m ending_temp -d density_code -b starting_step
+  #example for run above
+  ./density.sh -i 700 -m 150 -d 20 -b 4500
   ```
   
   
