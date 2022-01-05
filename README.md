@@ -47,5 +47,6 @@ Pressure-volume-temperature (PVT) curves are used to determine glass transition 
   #example for run above
   ./density.sh -i 700 -m 150 -d 20 -b 4500
   ```
+    * Output includes three columns; density, standard error and rmsd. 
   
   
