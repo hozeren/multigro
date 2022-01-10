@@ -31,10 +31,12 @@ sleep 2
 echo "Density analysis is starting... Sit tight."
 sleep 3
 
+int_dif=$(( int-intmin ))
+
 #Analysis Loop
 while [ $int -gt $intmin ]
 do
-    if [ "$int" -eq 700 ] ; then
+    if [ $(( int-intmin )) -eq $int_dif ] ; then
         cd $folder/$int
         echo $d_code | gmx_mpi energy -f $int.edr -b $st_time -o denisty_$int.xvg | awk -v OFS='\t' '/Energy/ {print $2, $3, $4} END {print $2, $3, $4}'| tee -a density.txt
         int=$(( int-25 ))
