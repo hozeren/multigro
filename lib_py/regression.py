@@ -16,58 +16,6 @@ __maintainer__ = "Hüsamettin Deniz Özeren"
 __email__ = "denizozeren614@gmail.com"
 __special_thanks__ = "James Phillips, from Stackoverflow"
 
-#Input arguments
-def args_input():
-  
-    argv = sys.argv[1:]
-  
-    try:
-        opts, args = getopt.getopt(argv, "i:m:d:b:")
-      
-    except:
-        print("Error with the arguments!")
-  
-    for opt, arg in opts:
-        if opt in ['-i']:
-            i = arg
-        elif opt in ['-m']:
-            m = arg
-        if opt in ['-d']:
-            d = arg
-        elif opt in ['-b']:
-            b = arg
-    return i, m, d, b
-
-i, m, d, b = args_input()
-
-print('# ' + '=' * 39 + " INPUT PARAMETERS "+ '='*39)
-print("Starting Density Analysis Run...")
-os.chmod("density.sh", 0o777)
-density_sh = "./density.sh"+" -i "+i+" -m "+m+" -d "+d+" -b "+b
-print("Bash script starting with this command: "+density_sh)
-os.system(density_sh)
-print("Ending...")
-print('# ' + '=' * 78)
-time.sleep(3)
-
-xData1 =[]
-yData1 = []
-
-with open("test_density.txt") as f:
-    for i in range(1):
-        f.readline()
-    for line in f:
-        cols = line.split()
-
-        if len(cols) == 2:
-            xData1.append(float(cols[0]))
-            yData1.append(float(cols[1]))
-    print('xData:', xData1)
-    print('xData:', yData1)
-xData = numpy.array(xData1) #putting x data in numpy array
-yData = numpy.array(yData1) #putting y data in numpy array
-
-
 #Function for pairwise regression
 def func(xArray, breakpoint, slopeA, offsetA, slopeB, offsetB):
     returnArray = []
@@ -105,31 +53,7 @@ def generate_Initial_Parameters():
     result = differential_evolution(sumOfSquaredError, parameterBounds, seed=3)
     return result.x
 
-# by default, differential_evolution completes by calling curve_fit() using parameter bounds
-geneticParameters = generate_Initial_Parameters()
-
-# call curve_fit without passing bounds from genetic algorithm
-fittedParameters, pcov = curve_fit(func, xData, yData, geneticParameters)
-print('Parameters:', fittedParameters)
-print() #Emptty space
-
-modelPredictions = func(xData, *fittedParameters) 
-
-absError = modelPredictions - yData
-
-SE = numpy.square(absError) # squared errors
-MSE = numpy.mean(SE) # mean squared errors
-RMSE = numpy.sqrt(MSE) # Root Mean Squared Error, RMSE
-Rsquared = 1.0 - (numpy.var(absError) / numpy.var(yData))
-
-print()
-print('RMSE:', RMSE)
-print('R-squared:', Rsquared)
-
-print()
-
-
-##########################################################
+    ##########################################################
 # graphics output section
 def ModelAndScatterPlot(graphWidth, graphHeight):
     f = plt.figure(figsize=(graphWidth/100.0, graphHeight/100.0), dpi=100)
@@ -151,18 +75,4 @@ def ModelAndScatterPlot(graphWidth, graphHeight):
 
     plt.show()
     plt.close('all') # clean up after using pyplot
-    return xModel, yModel
-
-############################################################
-# log the mo9del data
-def log_model (xModel, yModel):
-    file_name = 'model_data.txt'
-    log_file = open(file_name,'a+')
-    log_file.write(str(numpy.round(xModel,5))+"\t"+str(numpy.round(yModel,5))+"\n")
-    log_file.close()
-    return
-
-graphWidth = 800
-graphHeight = 600
-xModel, yModel = ModelAndScatterPlot(graphWidth, graphHeight)
-log_model(xModel, yModel)
+    return xModel, yModel    
