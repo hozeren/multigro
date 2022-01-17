@@ -16,6 +16,7 @@ __maintainer__ = "Hüsamettin Deniz Özeren"
 __email__ = "denizozeren614@gmail.com"
 __special_thanks__ = "James Phillips, from Stackoverflow"
 
+#Input arguments
 def args_input():
   
     argv = sys.argv[1:]
@@ -39,13 +40,15 @@ def args_input():
 
 i, m, d, b = args_input()
 
+print('# ' + '=' * 39 + " INPUT PARAMETERS "+ '='*39)
 print("Starting Density Analysis Run...")
 os.chmod("density.sh", 0o777)
 density_sh = "./density.sh"+" -i "+i+" -m "+m+" -d "+d+" -b "+b
 print("Bash script starting with this command: "+density_sh)
 os.system(density_sh)
 print("Ending...")
-time.sleep(2)
+print('# ' + '=' * 78)
+time.sleep(3)
 
 xData1 =[]
 yData1 = []
@@ -133,17 +136,18 @@ def ModelAndScatterPlot(graphWidth, graphHeight):
     axes = f.add_subplot(111)
 
     # first the raw data as a scatter plot
-    axes.plot(xData, yData,  'D')
+    axes.plot(xData, yData,  '.', color='red')
 
     # create data for the fitted equation plot
     xModel = numpy.linspace(min(xData), max(xData))
     yModel = func(xModel, *fittedParameters)
 
     # now the model as a line plot
-    axes.plot(xModel, yModel)
+    axes.plot(xModel, yModel, color='black')
 
     axes.set_xlabel('Temperature (K)') # X axis data label
-    axes.set_ylabel('Denisty (g/mL)') # Y axis data label
+    axes.set_ylabel('Density (kg/mL)') # Y axis data label
+    axes.tick_params(axis ='both', direction = 'in')
 
     plt.show()
     plt.close('all') # clean up after using pyplot
