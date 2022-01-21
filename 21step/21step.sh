@@ -57,7 +57,7 @@ intmax=21
 minit=min
 
 #Simulation Loop
-while [ $int -lt $intmax ]
+while [ $int -le $intmax ]
 do
     pint=$(( int-1 ))
     echo ""

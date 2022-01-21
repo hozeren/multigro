@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from .regression import func, sumOfSquaredError, generate_Initial_Parameters, ModelAndScatterPlot
+#from .regression import func, sumOfSquaredError, generate_Initial_Parameters, ModelAndScatterPlot
 
 # Autorship information
 __author__ = "Hüsamettin Deniz Özeren"
