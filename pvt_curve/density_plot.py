@@ -1,11 +1,18 @@
 #!/usr/bin/env python
 
 import numpy, scipy, matplotlib
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 from scipy.optimize import differential_evolution
 import warnings
 import os, sys, getopt, time
+from ..lib_py import regression
+
+import os
+WORK_DIR = os.getcwd()
+THIS_FILE_DIR = os.path.dirname(os.path.abspath(__file__))
+print('WORK_DIR', WORK_DIR)
+print('THIS_FILE_DIR', THIS_FILE_DIR)
 
 # Autorship information
 __author__ = "Hüsamettin Deniz Özeren"
