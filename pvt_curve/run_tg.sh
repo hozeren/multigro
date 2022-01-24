@@ -1,6 +1,8 @@
 #!/bin/bash
-# Running GROMACS with input files to produce PVT curve for Tg Values
-# Hüsamettin Deniz Özeren (https://github.com/hozeren)
+#author		     :Hüsamettin Deniz Özeren (https://github.com/hozeren)
+#date            :2022-01-24
+#notes           :Run step by step cooling to produce PVT data for Tg value
+#==============================================================================
 # set verbose level to info
 __VERBOSE=10
 
