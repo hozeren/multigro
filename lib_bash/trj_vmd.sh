@@ -10,25 +10,24 @@ folder=`pwd`             #directory where .gro, .mdp, etc.
 #Input parameters
 usage() 
 { 
-    echo "Usage: $0 [-n <Number of cores>] [-c <.GRO file>]"
+    echo "Usage: $0 [-f <trajectory file>]"
     echo "  -f      trajectory file (ex. *.trr, *.xtc)"
-    echo "  -c      initial .gro structure file"
     echo "  -b      Starting step for the trajectories"
     echo "Add *.tpr file in the same folder."
     exit 1
 }
 
-while getopts f:c:b: flag
+while getopts f:b flag
 do
-#[[ ${OPTARG} == -* ]] && { echo "Missing argument for -${flag}" ; exit 1 ; }
     case "${flag}" in
-        n) xtc=${OPTARG};;
-        c) init=${OPTARG%".gro"};;
-        b) b=${OPTARG%".gro"};;
+        f) xtc=${OPTARG};;
+        b) b=${OPTARG};;
     esac
 done
 
-if [ -z "$xtc" ] || [ -z "$init" ] || [ ! -f $folder/topol.tpr ]; then
+tpr=${xtc%".xtc"}
+
+if [ -z "$xtc" ] || [ ! -f $folder/$tpr.tpr ]; then
    usage
    exit
 fi
@@ -39,9 +38,10 @@ fi
 
 echo "Input parameters are shown below:"
 echo "TRJ: $xtc";
-echo ".GRO: $init.gro";
-tpr=${xtc%".xtc"}
-sleep 2
+echo "TPR: $tpr"".tpr"
+echo "Starting Step: $b ps"
+
+sleep 3
 echo ""
 
 gmx_mpi trjconv -s $tpr.tpr -f $xtc -center -ur compact -pbc mol -o center_$xtc
