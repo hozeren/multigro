@@ -1,5 +1,6 @@
 # MultiGRO
-### Still in WIP
+***Still in WIP STAGE***
+
 Bash shell scripts for GROMACS to run multiple simulations and their analysis at once.
 
 <p align="center">
