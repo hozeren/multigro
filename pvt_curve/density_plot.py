@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
-import numpy, scipy, matplotlib
-#import matplotlib.pyplot as plt
+import numpy, scipy
+import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 from scipy.optimize import differential_evolution
 import warnings
 import os, sys, getopt, time
-from ..lib_py import regression
+from multigro.bin_py.pvt_fit import PVT
 
 import os
 WORK_DIR = os.getcwd()
@@ -22,7 +22,7 @@ __license__ = "GNU General Public License v3.0"
 __maintainer__ = "Hüsamettin Deniz Özeren"
 __email__ = "denizozeren614@gmail.com"
 __special_thanks__ = "James Phillips, from Stackoverflow"
-
+'''
 #Input arguments
 def args_input():
   
@@ -56,7 +56,7 @@ os.system(density_sh)
 print("Ending...")
 print('# ' + '=' * 78)
 time.sleep(3)
-
+'''
 xData1 =[]
 yData1 = []
 
@@ -74,68 +74,11 @@ with open("test_density.txt") as f:
 xData = numpy.array(xData1) #putting x data in numpy array
 yData = numpy.array(yData1) #putting y data in numpy array
 
-
-#Function for pairwise regression
-def func(xArray, breakpoint, slopeA, offsetA, slopeB, offsetB):
-    returnArray = []
-    for x in xArray:
-        if x < breakpoint:
-            returnArray.append(slopeA * x + offsetA)
-        else:
-            returnArray.append(slopeB * x + offsetB)
-    return returnArray
-
-
-# function for genetic algorithm to minimize (sum of squared error)
-def sumOfSquaredError(parameterTuple):
-    warnings.filterwarnings("ignore") # do not print warnings by genetic algorithm
-    val = func(xData, *parameterTuple)
-    return numpy.sum((yData - val) ** 2.0)
-
-
-def generate_Initial_Parameters():
-    # min and max used for bounds
-    maxX = max(xData)
-    minX = min(xData)
-    maxY = max(yData)
-    minY = min(yData)
-    slope = 10.0 * (maxY - minY) / (maxX - minX) # times 10 for safety margin
-
-    parameterBounds = []
-    parameterBounds.append([minX, maxX]) # search bounds for breakpoint
-    parameterBounds.append([-slope, slope]) # search bounds for slopeA
-    parameterBounds.append([minY, maxY]) # search bounds for offsetA
-    parameterBounds.append([-slope, slope]) # search bounds for slopeB
-    parameterBounds.append([minY, maxY]) # search bounds for offsetB
-
-
-    result = differential_evolution(sumOfSquaredError, parameterBounds, seed=3)
-    return result.x
-
-# by default, differential_evolution completes by calling curve_fit() using parameter bounds
-geneticParameters = generate_Initial_Parameters()
-
-# call curve_fit without passing bounds from genetic algorithm
-fittedParameters, pcov = curve_fit(func, xData, yData, geneticParameters)
-print('Parameters:', fittedParameters)
-print() #Emptty space
-
-modelPredictions = func(xData, *fittedParameters) 
-
-absError = modelPredictions - yData
-
-SE = numpy.square(absError) # squared errors
-MSE = numpy.mean(SE) # mean squared errors
-RMSE = numpy.sqrt(MSE) # Root Mean Squared Error, RMSE
-Rsquared = 1.0 - (numpy.var(absError) / numpy.var(yData))
-
-print()
-print('RMSE:', RMSE)
-print('R-squared:', Rsquared)
-
-print()
-
-
+if __name__ == "__main__":  
+    a = PVT() #for graphical 
+    b= a.fit(xData, yData)
+    a.log(b)
+'''
 ##########################################################
 # graphics output section
 def ModelAndScatterPlot(graphWidth, graphHeight):
@@ -173,3 +116,4 @@ graphWidth = 800
 graphHeight = 600
 xModel, yModel = ModelAndScatterPlot(graphWidth, graphHeight)
 log_model(xModel, yModel)
+'''
