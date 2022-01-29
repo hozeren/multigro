@@ -8,7 +8,7 @@ import warnings
 import os, sys, getopt, time
 from multigro.bin_py.pvt_fit import PVT
 
-import os
+
 WORK_DIR = os.getcwd()
 THIS_FILE_DIR = os.path.dirname(os.path.abspath(__file__))
 print('WORK_DIR', WORK_DIR)
@@ -21,7 +21,7 @@ __credits__ = ["Hüsamettin Deniz Özeren"]
 __license__ = "GNU General Public License v3.0"
 __maintainer__ = "Hüsamettin Deniz Özeren"
 __email__ = "denizozeren614@gmail.com"
-__special_thanks__ = "James Phillips, from Stackoverflow"
+
 '''
 #Input arguments
 def args_input():
@@ -75,8 +75,8 @@ xData = numpy.array(xData1) #putting x data in numpy array
 yData = numpy.array(yData1) #putting y data in numpy array
 
 if __name__ == "__main__":  
-    a = PVT() #for graphical 
-    b= a.fit(xData, yData)
+    a = PVT(xData, yData) #for graphical 
+    b= a.fit()
     a.log(b)
 '''
 ##########################################################
