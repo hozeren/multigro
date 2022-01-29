@@ -35,7 +35,7 @@ class PVT:
         plt.close()
         return log
 
-    def log (self):
+    def log (self, log):
         file_name = 'model_data.txt'
         log_file = open(file_name,'a+')
         log_file.write(log+"\n")

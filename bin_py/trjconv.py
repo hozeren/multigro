@@ -18,16 +18,19 @@ __email__ = "denizozeren614@gmail.com"
 if __name__ == "__main__":
  
     args = InputArgs(sys.argv[1:])
-    args.trjconv()
+    f,s = args.trjconv()
     
     
     print('# ' + '=' * 39 + " INPUT PARAMETERS "+ '='*39)
-
+    print('TRJ      : '+f)
+    print('TPR/GRO  : '+s)
+    time.sleep(3)
+    print('')
     print("Starting Density Analysis Run...")
     print("")
-
-    os.system(
+    time.sleep(1)
+    os.system('gmx_mpi trjconv -f '+f+ '-s '+s+' -center -ur compact -pbc mol -o center_'+f)
 
     print("Ending...")
     print('# ' + '='*78)
-    time.sleep(3)
+
