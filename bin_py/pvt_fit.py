@@ -13,11 +13,6 @@ __maintainer__ = "Hüsamettin Deniz Özeren"
 __email__ = "denizozeren614@gmail.com"
 
 
-
-
-
-#x = numpy.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ,11, 12, 13, 14, 15], dtype=float)
-#y = numpy.array([5, 7, 9, 11, 13, 15, 28.92, 42.81, 56.7, 70.59, 84.47, 98.36, 112.25, 126.14, 140.03])
 class PVT:
     def __init__(self, x, y):
         self.x = x
