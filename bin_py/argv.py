@@ -52,4 +52,39 @@ class InputArgs:
                 b = arg
         return i, m, d, b 
 
+    def twentyone_step(self):
+    
+        try:
+            opts, args = getopt.getopt(self.argv, "n:f:")
+        
+        except:
+            print("Error with the arguments!")
+    
+        for opt, arg in opts:
+            if opt in ['-n']:
+                n = arg
+            elif opt in ['-f']:
+                f = arg
+        return n, f
+
+    def pvt_run(self):
+    
+        try:
+            opts, args = getopt.getopt(self.argv, "n:f:c:i:m:")
+        
+        except:
+            print("Error with the arguments!")
+    
+        for opt, arg in opts:
+            if opt in ['-n']:
+                n = arg
+            elif opt in ['-f']:
+                f = arg
+            elif opt in ['-c']:
+                c = arg
+            elif opt in ['-i']:
+                i = arg
+            elif opt in ['-m']:
+                m = arg
+        return n, f, c, i, m
     
