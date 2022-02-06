@@ -37,9 +37,9 @@ if __name__ == "__main__":
     print("")
     time.sleep(1)
 
-    for i in range(int(i), int(m)-25, -25):
+    for temp in range(int(i), int(m)-25, -25):
         os.chdir(PATH)
-        step_dir = os.path.join(PATH, str(i))
+        step_dir = os.path.join(PATH, str(temp))
         mdp_dir = os.path.join(PATH, str(f))
         gro_dir = os.path.join(PATH, str(f))
         if os.path.exists(step_dir) == True:
@@ -48,6 +48,18 @@ if __name__ == "__main__":
         os.mkdir(step_dir)
         shutil.copy(mdp_dir, step_dir)
         os.chdir(step_dir)
-        os.rename(str(f), str(i)+".mdp")
-        sh.sed('-i', '/^ref_t.*/d', str(i)+".mdp")
-        sh.sed('-i', '/^tau_t.*/a ref_t\t\t\= '+str(i), str(i)+".mdp")
+        os.rename(str(f), str(temp)+".mdp")
+        sh.sed('-i', '/^ref_t.*/d', str(temp)+".mdp")
+        sh.sed('-i', '/^tau_t.*/a ref_t\t\t\= '+str(temp), str(temp)+".mdp")
+
+        #PVT run of i step
+        if temp==int(i): #first step
+            print("First step started")
+            os.system('gmx_mpi grompp -f '+str(f)+' -o '+str(temp)+'.tpr'+' -c '+c+' -r '+c+' -p topol.top -n index.ndx')
+            os.system('mpirun -np '+str(n)+' gmx_mpi mdrun -v -deffnm '+str(temp))
+            new_gro=os.path.join(step_dir, str(temp)+".gro")
+        else:
+            p=int(temp)-25
+            new_gro=os.path.join(step_dir, str(p)+".gro")
+            os.system('gmx_mpi grompp -f '+str(temp)+".gro"+' -o '+str(temp)+'.tpr'+' -c '+str(p)+'.gro'+' -t '+str(p)+'.cpt'+' -p topol.top -n index.ndx')
+            os.system('mpirun -np '+str(n)+' gmx_mpi mdrun -v -deffnm '+str(temp))
