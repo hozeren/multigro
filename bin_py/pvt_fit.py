@@ -19,7 +19,7 @@ class PVT:
         self.y = y
         
 
-    def fit (self):
+    def fit(self):
         pw_fit = piecewise_regression.Fit(self.x, self.y, n_breakpoints=1)
         pw_fit.plot()
         plt.xlabel("Temperature (K)")
