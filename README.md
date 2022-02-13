@@ -1,5 +1,6 @@
 # MultiGRO
 ***Still in WIP STAGE***
+***Transition from bash to python is ongoing, the expected final package will be finished within three months***
 
 Bash shell scripts for GROMACS to run multiple simulations and their analysis at once.
 
