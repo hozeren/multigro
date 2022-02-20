@@ -1,6 +1,4 @@
 # MultiGRO
-***Still in WIP STAGE***
-***Transition from bash to python is ongoing, the expected final package will be finished within three months***
 
 Bash shell scripts for GROMACS to run multiple simulations and their analysis at once.
 
@@ -14,7 +12,8 @@ MultiGRO consists of two seperated components;
 1. **21 step equilibration:** It is well known 21 step decompression equilibration method.
 2. **PVT Curves for _T_<sub>g</sub> values:** A method to create PVT curves for glass transition temperature (_T_<sub>g</sub>).
 
-## Directories
+***Still in WIP STAGE***
+***Transition from bash to python is ongoing, the expected final package will be finished within three months***
 
 ## Download
 
