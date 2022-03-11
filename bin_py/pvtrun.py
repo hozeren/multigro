@@ -53,7 +53,7 @@ if __name__ == "__main__":
         sh.sed('-i', '/^tau_t.*/a ref_t\t\t\= '+str(temp), str(temp)+".mdp")
 
         #PVT run of i step
-        if temp==int(i): #first step
+        if temp == int(i): #first step
             print("First step started")
             os.system('gmx_mpi grompp -f '+str(f)+' -o '+str(temp)+'.tpr'+' -c '+c+' -r '+c+' -p topol.top -n index.ndx')
             os.system('mpirun -np '+str(n)+' gmx_mpi mdrun -v -deffnm '+str(temp))
